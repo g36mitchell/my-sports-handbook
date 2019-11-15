@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name = "description" content="Playbook to help me find the answers">
+        <title>The PlayBook</title>
+        <link rel="stylesheet" type="text/css" href="normalize.css" >
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>The PlayBook</h1>
+            </header>
+            <section class="dropdown">
+                <select id="js-team-dropdown">
+<!-- List of league teams dynamically placed here  -->
+                </select>
+            </section>
+            <section role="Banner">
+                <div class="teamDetails" id="js-team-detail">
+                    <div id="js-team-banner" class="teamBanner">
+                        <img src="" alt="team banner"/>                        
+                    </div>
+                    <div id="js-team-information">
+                        <div id="js-team-vitals">
+<!-- Format team vitals here... hometown, date of founding, current manager and owner --> 
+                        </div>
+                        <div id="js-team-socialmedia">
+<!-- Format team social media links here .. website, facebook, twitter, instagram, youtube -->
+                        </div>
+                    </div>       
+                </div>
+            </section>
+            <section role="About">
+                <button class="item" id="js-team-about">About</button>
+                <div class="about hidden"  id="js-about">
+<!-- About the franchise, the stadium dynamically placed here -->
+                </div>
+            </section>
+            <section role="Recent">
+                <button class="item" id="js-team-recent">Recent results</button>
+                <div class="recent hidden">
+<table id="js-recent-list">
+    <!-- Recent activity dynamically placed here -->
+</table>
+                </div>
+            </section>
+            <section role="Upcoming">
+                    <button class="item" id="js-team-upcoming">Upcoming events</button>
+                    <div class="upcoming hidden">
+    <table id="js-upcoming-list">
+    <!-- Upcoming activity dynamically placed here -->
+    </table>
+                    </div>
+                </section>
+            <section role="Roster">
+                <button class="item" id="js-team-roster">Roster</button>
+                <div class="roster hidden">
+                    <ul id="js-roster-list">
+<!-- Roster dynamically placed here -->
+                    </ul>
+                </div>
+            </section>
+ 
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+        <script src="teams.js"></script>
+    </body>
+</html>
