@@ -96,14 +96,14 @@ img {
  }
 
 .teamLogo {
-    width: 100%;
-    margin: 20px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .teamLogo img {
-     margin: 0px;
-     max-height: 200px;
-     width: auto;
+    width: 100%;
+    height: auto;
+    margin: 0px;
 }
 
 .floatPictureLeft img {
@@ -132,11 +132,13 @@ img {
 }
 
 button {
-    width: 100%;
-    height: 100px;
-    margin: 20px 0px 20px 0px;
-    font-size: 2.0em;
+    width: 80%;
+    height: 75px;
+    margin: 20px 20px 20px 20px;
+    font-size: 1.5em;
     text-align: left;
+    border-radius: 5px;
+    border-width: 5px;
 }
 
 .dropdown {
@@ -197,9 +199,10 @@ table {
 .floatPictureRight {
     float: right;
 }
-   .roster-description {
-       display: block;
-   }
+
+.roster-description {
+    display: block;
+}
 
    .teamBanner {
         display: block;
@@ -210,5 +213,6 @@ table {
    .teamBanner img {
         width: 100%;
         height: auto;
+        margin: 20px 0px 20px 0px;
    }
 }

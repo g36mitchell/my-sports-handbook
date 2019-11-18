@@ -244,12 +244,14 @@ function getTeamDetails(teamID) {
 
              /*  Provide Banner URL */
              $('#js-team-banner img').attr('src', teamsList[i].strTeamBanner);
-             if ($("js-team-detail").hasClass("hidden")) {
-             $("js-team-detail").toggleClass("hidden"); 
-            }   
+
              /*  About section  */
               let aboutString = generateAboutString(teamsList[i]);
               displayAbout(aboutString);
+
+              if ($("#js-team-detail").hasClass("hidden")) {
+                $("#js-team-detail").toggleClass("hidden"); 
+              }
 
               break;  /* no need to keep looping */
         }
