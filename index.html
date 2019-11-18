@@ -12,6 +12,9 @@
     <body>
         <div class="container">
             <header>
+                <div>
+                    <img src="images/playbook.png" alt="playbook"/>
+                </div>
                 <h1>The PlayBook</h1>
             </header>
             <section class="dropdown">
@@ -20,7 +23,7 @@
                 </select>
             </section>
             <section role="Banner">
-                <div class="teamDetails" id="js-team-detail">
+                <div class="teamDetails hidden" id="js-team-detail">
                     <div id="js-team-banner" class="teamBanner">
                         <img src="" alt="team banner"/>                        
                     </div>
@@ -34,30 +37,30 @@
                     </div>       
                 </div>
             </section>
-            <section role="About">
-                <button class="item" id="js-team-about">About</button>
+            <section role="About" class="about hidden">
+                <button class="item" id="js-team-about">Teach me about the team</button>
                 <div class="about hidden"  id="js-about">
 <!-- About the franchise, the stadium dynamically placed here -->
                 </div>
             </section>
-            <section role="Recent">
-                <button class="item" id="js-team-recent">Recent results</button>
+            <section role="Recent" class="recent hidden">
+                <button class="item" id="js-team-recent">Show me recent results</button>
                 <div class="recent hidden">
 <table id="js-recent-list">
     <!-- Recent activity dynamically placed here -->
 </table>
                 </div>
             </section>
-            <section role="Upcoming">
-                    <button class="item" id="js-team-upcoming">Upcoming events</button>
+            <section role="Upcoming" class="upcoming hidden">
+                    <button class="item" id="js-team-upcoming">Tell me about upcoming events</button>
                     <div class="upcoming hidden">
-    <table id="js-upcoming-list">
+<table id="js-upcoming-list">
     <!-- Upcoming activity dynamically placed here -->
-    </table>
+</table>
                     </div>
                 </section>
-            <section role="Roster">
-                <button class="item" id="js-team-roster">Roster</button>
+            <section role="Roster" class="roster hidden">
+                <button class="item" id="js-team-roster">Show me the team roster</button>
                 <div class="roster hidden">
                     <ul id="js-roster-list">
 <!-- Roster dynamically placed here -->

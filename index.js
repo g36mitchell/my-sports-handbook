@@ -62,7 +62,7 @@ function generateRosterElement(player) {
                     <img src="${player.strThumb}" alt="${player.strPlayer}" />
                 </div>
                 <div class="roster-description hidden">
-                    <p>${player.strDescriptionEN}</p>
+                    <p>${(player.strDescriptionEN) ? player.strDescriptionEN : "<i>Not on file.</i>"}</p>
                 </div>
             </div>
         </li>`;
@@ -76,6 +76,9 @@ function generateRosterString(teamPlayers) {
 }
 
 function displayRoster(teamRoster) {
+    if ($("section.roster").hasClass("hidden")) {
+        $("section.roster").toggleClass("hidden");
+    }
     $('#js-roster-list').html(teamRoster);
 }
 
@@ -136,6 +139,9 @@ function generateRecentEventsString(teamEvents, teamID) {
 }
 
 function displayRecentEvents(recentEvents) {
+    if ($("section.recent").hasClass("hidden")) {
+        $("section.recent").toggleClass("hidden");
+    }
     $('#js-recent-list').html(recentEvents);
 }
 
@@ -182,7 +188,10 @@ function generateUpcomingEventsElement(event, teamID) {
    }
    
    function displayUpcomingEvents(upcomingEvents) {
-       $('#js-upcoming-list').html(upcomingEvents);
+        if ($("section.upcoming").hasClass("hidden")) {
+            $("section.upcoming").toggleClass("hidden");
+        }
+        $('#js-upcoming-list').html(upcomingEvents);
    }
    
    function getUpcomingEvents(teamID) {
@@ -204,20 +213,25 @@ function generateUpcomingEventsElement(event, teamID) {
 
 function generateAboutString(teamDetails) {
  
-    return `<img src="${teamDetails.strTeamLogo}" alt="Team Logo" />
-    <h3>History</h3>
-    <p>
-          <img class="floatPictureRight" src="${teamDetails.strTeamBadge}" alt="Team Badge" />
-          ${teamDetails.strDescriptionEN}
-    </p>
-    <h3>Stadium</h3>
-    <p>
-        <img class="floatPictureLeft"src="${teamDetails.strStadiumThumb}" alt="Team Stadium" />
-        ${teamDetails.strStadiumDescription}
-    </p>`;
+    return `<div class="teamLogo"><img src="${teamDetails.strTeamLogo}" alt="Team Logo" /></div>
+    <div>
+        <h3>History</h3>
+        <div class="floatPictureRight">
+               <img src="${teamDetails.strTeamBadge}" alt="Team Badge" />
+        </div>
+        <p>${teamDetails.strDescriptionEN}</p>
+    </div>
+    <div>
+        <h3>Stadium</h3>
+        <div class="floatPictureLeft"><img src="${teamDetails.strStadiumThumb}" alt="Team Stadium" /></div>
+        <p>${teamDetails.strStadiumDescription}</p>
+    </div>`;
 }
 
 function displayAbout(about) {
+    if ($("section.about").hasClass("hidden")) {
+        $("section.about").toggleClass("hidden")
+    };
     $('#js-about').html(about);
 }
 
@@ -230,8 +244,9 @@ function getTeamDetails(teamID) {
 
              /*  Provide Banner URL */
              $('#js-team-banner img').attr('src', teamsList[i].strTeamBanner);
+             if ($("js-team-detail").hasClass("hidden")) {
              $("js-team-detail").toggleClass("hidden"); 
-
+            }   
              /*  About section  */
               let aboutString = generateAboutString(teamsList[i]);
               displayAbout(aboutString);

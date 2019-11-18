@@ -17,6 +17,7 @@ body {
     text-align: center;
 }
 
+
 .roster-name {
    font-size: 1.75em;
    margin-top: 5px;
@@ -52,6 +53,21 @@ li {
     border-top-style: double;
 }
 
+
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+header img {
+    height: 100px;
+    width: auto;
+}
+
 .roster-line-1  {
     display: flex;
     flex-direction: column;
@@ -68,19 +84,38 @@ li {
     display: hidden;
 }
 
-img {
-   height: 200px; 
+.roster-picture img {
+   height: 300px; 
    margin: 0px 20px 0px 20px;
 }
 
-.floatPictureLeft {
-    float: left;
-    margin: 10px;
+img {
+    height: 300px;
+    width: auto;
+    margin: 20px 20px 20px 20px;
+ }
+
+.teamLogo {
+    width: 100%;
+    margin: 20px;
 }
 
-.floatPictureRight {
-    float: right;
+.teamLogo img {
+     margin: 0px;
+     max-height: 200px;
+     width: auto;
+}
+
+.floatPictureLeft img {
     margin: 10px;
+    max-height: 300px;
+    width: auto;
+}
+
+.floatPictureRight img {
+    margin: 10px;
+    max-height: 300px;
+    width: auto;
 }
 
 .about p {
@@ -99,6 +134,9 @@ img {
 button {
     width: 100%;
     height: 100px;
+    margin: 20px 0px 20px 0px;
+    font-size: 2.0em;
+    text-align: left;
 }
 
 .dropdown {
@@ -109,7 +147,6 @@ select {
     width: 50%;
     height: 50px;
 }
-
 
 table {
     font-family: arial, sans-serif;
@@ -141,7 +178,7 @@ table {
    .container {
     margin: 0 auto;
     padding: 0;
-    max-width: 1200px;
+    max-width: 1000px;
    }
   
    .roster-line-2 {
@@ -153,12 +190,25 @@ table {
        float: left;
    }
    
+   .floatPictureLeft {
+    float: left;
+}
+
+.floatPictureRight {
+    float: right;
+}
    .roster-description {
        display: block;
    }
 
    .teamBanner {
-       display: block;
+        display: block;
+        margin: 0px;
+        padding: 0px;
    }
- 
+
+   .teamBanner img {
+        width: 100%;
+        height: auto;
+   }
 }
