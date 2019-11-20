@@ -245,7 +245,7 @@ function getTeamDetails(teamID) {
         if (teamsList[i].idTeam == teamID) {
 
              /*  Provide Banner URL */
-             $('#js-team-banner img').attr('src', teamsList[i].strTeamBanner);
+             $('#js-team-banner').html(`<img src="${teamsList[i].strTeamBanner}" alt="team banner"/>`);
 
              /*  About section  */
               let aboutString = generateAboutString(teamsList[i]);

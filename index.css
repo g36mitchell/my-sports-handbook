@@ -62,8 +62,14 @@ h1 {
     color: #1F2833;
 }
 
-.longText {
-    
+a {
+    text-decoration: none;
+    color: #1F2833;
+}
+
+a:hover {
+    color: #123C69;
+    font-weight: bolder;
 }
 
 header {
@@ -154,6 +160,11 @@ button {
     background-color: #1f2833;
     color: #c5c6c7;
 }
+
+button:hover {
+    background: #123C69;
+  }
+  
 
 .dropdown {
     margin: 20px 0px 20px 0px;
