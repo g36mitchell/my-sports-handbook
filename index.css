@@ -6,7 +6,7 @@
 body {
     font-family: "Raleway", sans-serif;
     font-size: 18px;
-    background-color: #c5c6c7; /*#F2F2F2;*/
+    background-color: #dddddd; /*#c5c6c7; #F2F2F2;*/
     color: #303030; /*#383838;*/
     font-weight: 400;
     font-style: normal;
@@ -181,7 +181,7 @@ table {
   }
 
   tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #c5c6c7;
   }
 
   .column-middle {
