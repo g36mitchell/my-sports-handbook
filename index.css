@@ -4,11 +4,13 @@
 
 /* everything I want it to be if it is smaller device */
 body {
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    background-color: #F2F2F2;
-    color: #383838;
-    line-height: 1.2;
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+    background-color: #c5c6c7; /*#F2F2F2;*/
+    color: #303030; /*#383838;*/
+    font-weight: 400;
+    font-style: normal;
+    line-height: 26px;
 }
 
 .container {
@@ -46,7 +48,7 @@ ul {
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    padding: 0px 0px 0px 0px;
+    padding: 0px;
 }
 
 li {
@@ -54,6 +56,15 @@ li {
 }
 
 
+h1 {
+    font-variant: small-caps;
+    font-size: 2.0em;
+    color: #1F2833;
+}
+
+.longText {
+    
+}
 
 header {
     display: flex;
@@ -92,7 +103,8 @@ header img {
 img {
     height: 300px;
     width: auto;
-    margin: 20px 20px 20px 20px;
+    margin: 20px;
+    padding: 5px;
  }
 
 .teamLogo {
@@ -139,6 +151,8 @@ button {
     text-align: left;
     border-radius: 5px;
     border-width: 5px;
+    background-color: #1f2833;
+    color: #c5c6c7;
 }
 
 .dropdown {
@@ -157,11 +171,15 @@ table {
   }
   
   td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid #5D5C61;
     text-align: left;
     padding: 8px;
   }
   
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
   tr:nth-child(even) {
     background-color: #dddddd;
   }

@@ -102,26 +102,28 @@ function generateRecentEventsElement(event, teamID) {
     let results = "T";
 
   if  (event.idHomeTeam == teamID) { 
-     (event.intHomeScore > event.intAwayScore) ? rowClass = "row-win": rowClass = "row-loss";
+    (parseInt(event.intHomeScore) > parseInt(event.intAwayScore)) ? rowClass = "row-win": rowClass = "row-loss";
   } 
   else {
-    (event.intHomeScore > event.intAwayScore) ? rowClass = "row-loss": rowClass = "row-win";
+    (parseInt(event.intHomeScore) > parseInt(event.intAwayScore)) ? rowClass = "row-loss": rowClass = "row-win";
   }
 
   switch (rowClass) {
       case "row-tie": results = "T"; break;
       case "row-win": results = "W"; break;
       case "row-loss": results = "L";
-  } 
+   } 
+/* Score could be null for current game */
+  let highlightReel = (event.intAwayScore) ? `<a href="${event.strVideo}" target="_blank">Highlights</a>` : "In Progress";
 
     return `
     <tr class="${rowClass}">
       <td class="column-middle">${event.intRound}</td>
       <td class="column-middle">${results}</td>
       <td class="column-left">${event.strEventAlternate}</td>
-      <td class="column-middle">${event.intAwayScore}</td>
-      <td class="column-middle">${event.intHomeScore}</td>
-      <td class="column-left highlight-reel"><a href="${event.strVideo}" target="_blank">Highlights</a></td>
+      <td class="column-middle">${(event.intAwayScore) ? event.intAwayScore : ' '}</td>
+      <td class="column-middle">${(event.intHomeScore) ? event.intHomeScore : ' '}</td>
+      <td class="column-left highlight-reel">${highlightReel}</td>
     </tr>`;
 }
 
@@ -215,16 +217,16 @@ function generateAboutString(teamDetails) {
  
     return `<div class="teamLogo"><img src="${teamDetails.strTeamLogo}" alt="Team Logo" /></div>
     <div>
-        <h3>History</h3>
+        <h2>History</h2>
         <div class="floatPictureRight">
                <img src="${teamDetails.strTeamBadge}" alt="Team Badge" />
         </div>
-        <p>${teamDetails.strDescriptionEN}</p>
+        <p class="longText">${(teamDetails.strDescriptionEN) ? teamDetails.strDescriptionEN : ' '}</p>
     </div>
     <div>
-        <h3>Stadium</h3>
+        <h2>Stadium</h2>
         <div class="floatPictureLeft"><img src="${teamDetails.strStadiumThumb}" alt="Team Stadium" /></div>
-        <p>${teamDetails.strStadiumDescription}</p>
+        <p class="longText">${(teamDetails.strStadiumDescription) ? teamDetails.strStadiumDescription : ' '}</p>
     </div>`;
 }
 
