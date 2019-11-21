@@ -1,5 +1,15 @@
 # My Sports Handbook
-API Hack  - Pull NFL team information for a selected Team
+A tool to allow you to quickly pull information about a specific NFL team including team details,
+events, results, highlight reels, a players' roster.
+
+## Motivation
+Conversations on Monday and Tuesday at work can be focused on the previous night's football games.  
+With a few clicks, you can get up to date on how the game went and see the score and highlight
+video.
+
+## Screenshots
+Landing Page
+
 
 ## Overview
 www.thesportsdb.com contains information for many different types of leagues.  Within a league there is 
