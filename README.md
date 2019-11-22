@@ -27,7 +27,7 @@ this API Hack, the National Football League (NFL) was chosen since its season wa
 development.
 
 ## Link to work
- https://g36mitchell.github.io/playbook/
+ https://g36mitchell.github.io/my-sports-handbook/
  
 ## Built with
  HTML, CSS, Javascript, JQuery
