@@ -33,7 +33,6 @@ body {
 }
 
 .roster-vitals, .roster-hometown {
-    font-size: 14px;
     margin-top: 0px;
     margin-bottom: 3px;
 }
@@ -72,6 +71,46 @@ a:hover {
     font-weight: bolder;
 }
 
+a img {
+    display: block;
+    height: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+}
+
+.team-information {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px 10px 20px;
+}
+
+.team-vitals {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-vitals p {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+.team-socialmedia {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.team-socialmedia img {
+    height: 50px;
+    width: auto;
+    margin: 10px;
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -97,8 +136,12 @@ header img {
     width: 100%;
 }
 
-.roster-description {
-    display: hidden;
+.expando {
+    display: none;
+}
+
+.expando:target {
+    display: block;
 }
 
 .roster-picture img {
@@ -150,7 +193,7 @@ img {
 }
 
 button {
-    width: 80%;
+    width: 80%; 
     height: 75px;
     margin: 20px 20px 20px 20px;
     font-size: 1.5em;
@@ -171,7 +214,7 @@ button:hover {
 }
 
 select {
-    width: 50%;
+    width: 60%; 
     height: 50px;
 }
 
@@ -201,47 +244,63 @@ table {
 
 @media screen and (min-width: 750px) {
     /* everything I want it to be if the screen is bigger */
+
     body {
-       font-size: 20px;
-       line-height: 1.5;
-   }
+        line-height: 30px;
+        font-size: 22px;
+    }
 
-   .container {
-    margin: 0 auto;
-    padding: 0;
-    max-width: 1000px;
-   }
-  
-   .roster-line-2 {
-    display: block;
-    width: 100%;
-   }
+    .container {
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1000px;
+    }
+  /*
+    .roster-line-2 {
+        display: block;
+        width: 100%;
+    }
+*/
+    .team-information {
+        display: flex;
+        flex-direction: row;
+    /*    width: 100%;  */
+    }
 
-   .roster-picture {
+    .team-vitals {
+        width: 50%;
+    }
+
+    .team-socialmedia {
+        justify-content: flex-end;
+        width: 50%;
+    }
+    
+    .roster-picture {
        float: left;
-   }
+    }
    
-   .floatPictureLeft {
-    float: left;
-}
+    .floatPictureLeft {
+        float: left;
+    }
 
-.floatPictureRight {
-    float: right;
-}
+    .floatPictureRight {
+        float: right;
+    }
 
-.roster-description {
-    display: block;
-}
+    .roster-description {
+        display: block;
+    }
 
-   .teamBanner {
+    .teamBanner {
         display: block;
         margin: 0px;
         padding: 0px;
-   }
+    }
 
-   .teamBanner img {
+    .teamBanner img {
         width: 100%;
         height: auto;
         margin: 20px 0px 20px 0px;
-   }
+    }
 }

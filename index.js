@@ -16,11 +16,12 @@ function displayTeams(leagueTeams) {
     $('#js-team-dropdown').html(leagueTeams);
 }
 
-function createLeagueTeamList(leagueID = 4391) {
-    fetch(`https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=${leagueID}`)
+function createLeagueTeamList(leagueID = NFL_LEAGUE_ID) {
+    fetch(`${LEAGUE_INFO_API}?id=${leagueID}`)
     .then(response => response.json())
     .then(responseJson => {
-        var leagueTeamString =  generateLeagueTeamString(responseJson["teams"]);
+        teamsList = responseJson["teams"];
+        var leagueTeamString =  generateLeagueTeamString(teamsList);
         displayTeams(leagueTeamString);
     })
     .catch(error => alert('Oops! Something went wrong. Try again later.'));
@@ -44,8 +45,10 @@ function generateRosterElement(player) {
             <div class="roster-picture">
                 <img src="${player.strThumb}" alt="${player.strPlayer}" />
             </div>
-            <div class="roster-description hidden">
-                <p>${player.strDescriptionEN}</p>
+            <div><a href="#${player.idPlayer}" class="roster-description">Show player detail</a>
+                <p id="${player.idPlayer}" class="expando">
+                 ${(player.strDescriptionEN) ? player.strDescriptionEN : "<i>Not on file.</i>"}
+                </p>
             </div>
         </div>
     </li>`;
@@ -61,12 +64,13 @@ function generateRosterElement(player) {
                 <div class="roster-picture">
                     <img src="${player.strThumb}" alt="${player.strPlayer}" />
                 </div>
-                <div class="roster-description hidden">
-                    <p>${(player.strDescriptionEN) ? player.strDescriptionEN : "<i>Not on file.</i>"}</p>
+                <div><a href="#${player.idPlayer} class="roster-description">Show player detail</a>
+                    <p id="${player.idPlayer}" class="expando">
+                        ${(player.strDescriptionEN) ? player.strDescriptionEN : "<i>Not on file.</i>"}
+                    </p>
                 </div>
             </div>
         </li>`;
-
     }
 }
 
@@ -83,7 +87,7 @@ function displayRoster(teamRoster) {
 }
 
 function getTeamRoster(teamID) {
-    fetch(`https://www.thesportsdb.com/api/v1/json/1/lookup_all_players.php?id=${teamID}`)
+    fetch(`${TEAM_ROSTER_API}?id=${teamID}`)
       .then(response => response.json())
       .then(responseJson => {
           var rosterString =  generateRosterString(responseJson["player"]);
@@ -114,12 +118,12 @@ function generateRecentEventsElement(event, teamID) {
       case "row-loss": results = "L";
    } 
 /* Score could be null for current game */
-  let highlightReel = (event.intAwayScore) ? `<a href="${event.strVideo}" target="_blank">Highlights</a>` : "In Progress";
+  let highlightReel = (event.intAwayScore) ? `<a href="${event.strVideo}" target="_blank"><img src="images/play_youtube_video.png" alt="play highlight video" /></a>` : "In Progress";
 
     return `
     <tr class="${rowClass}">
       <td class="column-middle">${event.intRound}</td>
-      <td class="column-middle">${results}</td>
+      <td class="column-middle">${(event.intAwayScore) ? results : ' '}</td>
       <td class="column-left">${event.strEventAlternate}</td>
       <td class="column-middle">${(event.intAwayScore) ? event.intAwayScore : ' '}</td>
       <td class="column-middle">${(event.intHomeScore) ? event.intHomeScore : ' '}</td>
@@ -148,7 +152,7 @@ function displayRecentEvents(recentEvents) {
 }
 
 function getRecentEvents(teamID) {
-    fetch(`https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=${teamID}`)
+    fetch(`${RECENT_EVENTS_API}?id=${teamID}`)
       .then(response => response.json())
       .then(responseJson => {
           var recentEventsString =  generateRecentEventsString(responseJson["results"], teamID);
@@ -180,7 +184,7 @@ function generateUpcomingEventsElement(event, teamID) {
    
    function generateUpcomingEventsString(teamEvents, teamID) {
        const items = teamEvents.map((event) => generateUpcomingEventsElement(event, teamID)); 
-       items.unshift(`    <tr>
+       items.unshift(`<tr>
        <th class="column-middle column-header">Round</th>
        <th class="column-middle column-header">Location</th>
        <th class="column-left column-header">Game</th>
@@ -195,9 +199,9 @@ function generateUpcomingEventsElement(event, teamID) {
         }
         $('#js-upcoming-list').html(upcomingEvents);
    }
-   
+
    function getUpcomingEvents(teamID) {
-       fetch(`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${teamID}`)
+       fetch(`${UPCOMING_EVENTS_API}?id=${teamID}`)
          .then(response => response.json())
          .then(responseJson => {
              var upcomingEventsString =  generateUpcomingEventsString(responseJson["events"], teamID);
@@ -216,18 +220,18 @@ function generateUpcomingEventsElement(event, teamID) {
 function generateAboutString(teamDetails) {
  
     return `<div class="teamLogo"><img src="${teamDetails.strTeamLogo}" alt="Team Logo" /></div>
-    <div>
+    <section>
         <h2>History</h2>
         <div class="floatPictureRight">
                <img src="${teamDetails.strTeamBadge}" alt="Team Badge" />
         </div>
         <p class="longText">${(teamDetails.strDescriptionEN) ? teamDetails.strDescriptionEN : ' '}</p>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2>Stadium</h2>
         <div class="floatPictureLeft"><img src="${teamDetails.strStadiumThumb}" alt="Team Stadium" /></div>
         <p class="longText">${(teamDetails.strStadiumDescription) ? teamDetails.strStadiumDescription : ' '}</p>
-    </div>`;
+    </section>`;
 }
 
 function displayAbout(about) {
@@ -244,8 +248,17 @@ function getTeamDetails(teamID) {
 
         if (teamsList[i].idTeam == teamID) {
 
-             /*  Provide Banner URL */
-             $('#js-team-banner').html(`<img src="${teamsList[i].strTeamBanner}" alt="team banner"/>`);
+             /*  Provide Team Overview: Badge, Vitals, Social Media */
+            $('#js-team-banner').html(`<img src="${teamsList[i].strTeamBanner}" alt="team banner"/>`);
+
+            $('#js-team-vitals').html(`<p id="js-team-founded">Founded: ${teamsList[i].intFormedYear}</p>
+                                       <p id="js-team-manager">Manager: ${teamsList[i].strManager}</p>`);
+            
+            $('#js-team-socialmedia').html(
+            `<a href="${teamsList[i].strWebsite}" target="_blank"><img src="${teamsList[i].strTeamBadge}" alt="team website" /></a>
+             <a href="${teamsList[i].strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>
+             <a href="${teamsList[i].strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>
+             <a href="${teamsList[i].strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
 
              /*  About section  */
               let aboutString = generateAboutString(teamsList[i]);
