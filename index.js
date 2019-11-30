@@ -255,10 +255,10 @@ function getTeamDetails(teamID) {
                                        <p id="js-team-manager">Manager: ${teamsList[i].strManager}</p>`);
             
             $('#js-team-socialmedia').html(
-            `<a href="${teamsList[i].strWebsite}" target="_blank"><img src="${teamsList[i].strTeamBadge}" alt="team website" /></a>
-             <a href="${teamsList[i].strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>
-             <a href="${teamsList[i].strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>
-             <a href="${teamsList[i].strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
+            `<a href="http://${teamsList[i].strWebsite}" target="_blank"><img src="${teamsList[i].strTeamBadge}" alt="team website" /></a>
+             <a href="http://${teamsList[i].strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>
+             <a href="http://${teamsList[i].strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>
+             <a href="http://${teamsList[i].strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
 
              /*  About section  */
               let aboutString = generateAboutString(teamsList[i]);
