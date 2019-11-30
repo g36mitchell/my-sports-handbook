@@ -8,9 +8,11 @@ With a few clicks, you can get up to date on how the game went and see the score
 video.
 
 ## Screenshots
-Landing Page
-![](
+### Landing Page
+![](screenshots/Landing_Page.JPG)
 
+### Select a team
+![](screenshots/Select_Team.JPG)
 
 ## Overview
 www.thesportsdb.com contains information for many different types of leagues.  Within a league there is 
@@ -25,7 +27,10 @@ this API Hack, the National Football League (NFL) was chosen since its season wa
 development.
 
 ## Link to work
- https://g36mitchell.github.io/playbook/
+ https://g36mitchell.github.io/my-sports-handbook/
  
-## Technology used
+## Built with
  HTML, CSS, Javascript, JQuery
+ 
+## Acknowledgements
+Thanks to Bob Mitchell and Mike Stanley for testing the tool for me.
