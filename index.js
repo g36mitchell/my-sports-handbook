@@ -105,7 +105,7 @@ function generateRecentEventsElement(event, teamID) {
     let rowClass = "row-tie";
     let results = "T";
 
-  if  (event.idHomeTeam == teamID) { 
+  if  (event.idHomeTeam === teamID) { 
     (parseInt(event.intHomeScore) > parseInt(event.intAwayScore)) ? rowClass = "row-win": rowClass = "row-loss";
   } 
   else {
@@ -171,7 +171,7 @@ function generateUpcomingEventsElement(event, teamID) {
     /* Determine home or away*/   
      let location = "";
    
-     (event.idHomeTeam == teamID) ? location = "Home" : location = "Away";
+     (event.idHomeTeam === teamID) ? location = "Home" : location = "Away";
 
        return `
        <tr>
@@ -212,7 +212,46 @@ function generateUpcomingEventsElement(event, teamID) {
    
    /*-----------------------------------------------------------------------------*/
 
+/**********************************************************************************/
+/*  Social media                                                                  */
 
+function generateSocialMedia(t) {
+
+/*
+    $('#js-team-socialmedia').html(
+        `<a href="http://${teamsList[i].strWebsite}" target="_blank"><img src="${teamsList[i].strTeamBadge}" alt="team website" /></a>
+         <a href="http://${teamsList[i].strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>
+         <a href="http://${teamsList[i].strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>
+         <a href="http://${teamsList[i].strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
+*/
+
+/*  See which social media each team is using */
+    let socialMedia = [];
+    /* if the Team has a website */
+    if ((t.strWebsite) && t.strWebsite != "") {
+        socialMedia.push(`<a href="http://${t.strWebsite}" target="_blank"><img src="${t.strTeamBadge}" alt="team website" /></a>`); 
+    }
+    /* if the Team has a Facebook page */
+    if ((t.strFacebook) && t.strFacebook != "") {
+        socialMedia.push(`<a href="http://${t.strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>`);
+    }
+    /* if the Team has a Twitter account */
+    if ((t.strTwitter) && t.strTwitter != "") {
+        socialMedia.push(`<a href="http://${t.strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>`);
+    }
+    /* if the Team has an Instagram account */
+    if ((t.strInstagram) && t.strInstagram != "") {
+        socialMedia.push(`<a href="http://${t.strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
+    }
+    
+    return socialMedia.join('');
+}
+
+function displaySocialMedia(t) {
+
+    $('#js-team-socialmedia').html(t);
+
+}
 
 /**********************************************************************************/
 /**************   Get Team Details -- banner, stadium information, about          */
@@ -245,30 +284,28 @@ function getTeamDetails(teamID) {
 
 /* used the cached team information */
     for (let i = 0; i < teamsList.length; i++) {
-
-        if (teamsList[i].idTeam == teamID) {
-
-             /*  Provide Team Overview: Badge, Vitals, Social Media */
+        if (teamsList[i].idTeam === teamID) {
+             /* Display Banner */
             $('#js-team-banner').html(`<img src="${teamsList[i].strTeamBanner}" alt="team banner"/>`);
 
+            /* Display Vitals */
             $('#js-team-vitals').html(`<p id="js-team-founded">Founded: ${teamsList[i].intFormedYear}</p>
                                        <p id="js-team-manager">Manager: ${teamsList[i].strManager}</p>`);
-            
-            $('#js-team-socialmedia').html(
-            `<a href="http://${teamsList[i].strWebsite}" target="_blank"><img src="${teamsList[i].strTeamBadge}" alt="team website" /></a>
-             <a href="http://${teamsList[i].strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>
-             <a href="http://${teamsList[i].strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>
-             <a href="http://${teamsList[i].strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
 
-             /*  About section  */
-              let aboutString = generateAboutString(teamsList[i]);
-              displayAbout(aboutString);
+            /* Display Social Media */                           
+            let socialMediaString = generateSocialMedia(teamsList[i]);
+            displaySocialMedia(socialMediaString);
 
-              if ($("#js-team-detail").hasClass("hidden")) {
+             /*  Generate About Section */
+            let aboutString = generateAboutString(teamsList[i]);
+            displayAbout(aboutString);
+
+            /* If this is FTE then the section needs to be unhidden */
+            if ($("#js-team-detail").hasClass("hidden")) {
                 $("#js-team-detail").toggleClass("hidden"); 
-              }
+            }
 
-              break;  /* no need to keep looping */
+            break;  /* no need to keep looping */
         }
     }
 }

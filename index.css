@@ -142,6 +142,7 @@ header img {
 
 .expando:target {
     display: block;
+    transform: translateX(60px);    
 }
 
 .roster-picture img {
@@ -214,7 +215,7 @@ button:hover {
 }
 
 select {
-    width: 60%; 
+    width: 50%; 
     height: 50px;
 }
 
