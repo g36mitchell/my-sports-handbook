@@ -45,8 +45,9 @@ function generateRosterElement(player) {
             <div class="roster-picture">
                 <img src="${player.strThumb}" alt="${player.strPlayer}" />
             </div>
-            <div><a href="#${player.idPlayer}" class="roster-description">Show player detail</a>
-                <p id="${player.idPlayer}" class="expando">
+            <div>
+                <a href="#${player.idPlayer}">Show player detail</a>
+                <p id="${player.idPlayer}" class="expando roster-description">
                  ${(player.strDescriptionEN) ? player.strDescriptionEN : "<i>Not on file.</i>"}
                 </p>
             </div>
@@ -64,8 +65,8 @@ function generateRosterElement(player) {
                 <div class="roster-picture">
                     <img src="${player.strThumb}" alt="${player.strPlayer}" />
                 </div>
-                <div><a href="#${player.idPlayer} class="roster-description">Show player detail</a>
-                    <p id="${player.idPlayer}" class="expando">
+                <div><a href="#${player.idPlayer}">Show player detail</a>
+                    <p id="${player.idPlayer}" class="expando roster-description">
                         ${(player.strDescriptionEN) ? player.strDescriptionEN : "<i>Not on file.</i>"}
                     </p>
                 </div>

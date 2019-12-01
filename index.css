@@ -19,7 +19,6 @@ body {
     text-align: center;
 }
 
-
 .roster-name {
    font-size: 1.75em;
    margin-top: 5px;
@@ -38,7 +37,7 @@ body {
 }
 
 .roster-description {
-    margin: 0px 40px 0px 40px;
+    margin: 0px 20px 0px 20px;
     text-align: left;
 }
 
@@ -61,14 +60,9 @@ h1 {
     color: #1F2833;
 }
 
-a {
-    text-decoration: none;
-    color: #1F2833;
-}
-
 a:hover {
-    color: #123C69;
     font-weight: bolder;
+    font-size: 1.1em;
 }
 
 a img {
@@ -136,13 +130,22 @@ header img {
     width: 100%;
 }
 
+.roster-line-2 a {
+    text-align: center;
+    color: #123C69;
+    text-decoration: underline;
+    font-variant: small-caps;
+}
+
 .expando {
     display: none;
 }
 
 .expando:target {
     display: block;
-    transform: translateX(60px);    
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
 
 .roster-picture img {
@@ -256,12 +259,7 @@ table {
         padding: 0;
         max-width: 1000px;
     }
-  /*
-    .roster-line-2 {
-        display: block;
-        width: 100%;
-    }
-*/
+
     .team-information {
         display: flex;
         flex-direction: row;
@@ -289,7 +287,16 @@ table {
         float: right;
     }
 
-    .roster-description {
+    .roster-line-2 a {
+       display: none;
+    }
+    
+    .roster-line-2 {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .expando {
         display: block;
     }
 
