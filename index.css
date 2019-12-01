@@ -172,15 +172,15 @@ img {
 }
 
 .floatPictureLeft img {
-    margin: 10px;
-    max-height: 300px;
-    width: auto;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
 }
 
 .floatPictureRight img {
-    margin: 10px;
-    max-height: 300px;
-    width: auto;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
 }
 
 .about p {
