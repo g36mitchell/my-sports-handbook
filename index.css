@@ -188,7 +188,13 @@ img {
 }
 
 .teamBanner {
-    display: none;
+    margin: 20px 0px 20px 0px;
+    padding: 0px;
+}
+
+.teamBanner img {
+    width: 100%;
+    height:auto;
 }
 
 .hidden {
@@ -217,7 +223,7 @@ button:hover {
 }
 
 select {
-    width: 50%; 
+    width: 60%; 
     height: 50px;
 }
 
@@ -225,6 +231,7 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    padding: 0px 5px 0px 5px;
   }
   
   td, th {
@@ -299,15 +306,4 @@ table {
         display: block;
     }
 
-    .teamBanner {
-        display: block;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .teamBanner img {
-        width: 100%;
-        height: auto;
-        margin: 20px 0px 20px 0px;
-    }
 }

@@ -16,16 +16,18 @@ function displayTeams(leagueTeams) {
     $('#js-team-dropdown').html(leagueTeams);
 }
 
-function createLeagueTeamList(leagueID = NFL_LEAGUE_ID) {
+function createLeagueTeamList(leagueID) {
     fetch(`${LEAGUE_INFO_API}?id=${leagueID}`)
     .then(response => response.json())
     .then(responseJson => {
-        teamsList = responseJson["teams"];
+        teamsList = responseJson["teams"];  /* cache the league's teams, which is only NFL in the MVP */
         var leagueTeamString =  generateLeagueTeamString(teamsList);
         displayTeams(leagueTeamString);
     })
-    .catch(error => alert('Oops! Something went wrong. Try again later.'));
+    /* do a modal when the error is on the team list */
+    .catch(error => alert(`Oops! Something went wrong. Try again later. ${error}`));
 }
+
 /*---------------------------------------------------------------------------*/
 
 /*****************************************************************************/
@@ -94,7 +96,7 @@ function getTeamRoster(teamID) {
           var rosterString =  generateRosterString(responseJson["player"]);
           displayRoster(rosterString);
       })
-      .catch(error => alert('Oops! Something went wrong loading the Roster. Try again later.'));
+      .catch(error => displayRoster(`Error loading. ${error}`));
   }
 /*----------------------------------------------------------------------------*/
 
@@ -104,7 +106,7 @@ function generateRecentEventsElement(event, teamID) {
 
  /* Determine win or loss, maybe a tie?*/   
     let rowClass = "row-tie";
-    let results = "T";
+    let results  = "T";
 
   if  (event.idHomeTeam === teamID) { 
     (parseInt(event.intHomeScore) > parseInt(event.intAwayScore)) ? rowClass = "row-win": rowClass = "row-loss";
@@ -114,8 +116,8 @@ function generateRecentEventsElement(event, teamID) {
   }
 
   switch (rowClass) {
-      case "row-tie": results = "T"; break;
-      case "row-win": results = "W"; break;
+      case "row-tie":  results = "T"; break;
+      case "row-win":  results = "W"; break;
       case "row-loss": results = "L";
    } 
 /* Score could be null for current game */
@@ -159,7 +161,7 @@ function getRecentEvents(teamID) {
           var recentEventsString =  generateRecentEventsString(responseJson["results"], teamID);
           displayRecentEvents(recentEventsString);
       })
-      .catch(error => alert('Oops! Something went wrong loading Recent Events. Try again later.'));
+      .catch(error => displayRecentEvents(`Error loading. ${error}`));
   }
 
 /*-----------------------------------------------------------------------------*/
@@ -208,7 +210,7 @@ function generateUpcomingEventsElement(event, teamID) {
              var upcomingEventsString =  generateUpcomingEventsString(responseJson["events"], teamID);
              displayUpcomingEvents(upcomingEventsString);
          })
-         .catch(error => alert('Oops! Something went wrong loading Upcoming Events. Try again later.'));
+         .catch(error => displayUpcomingEvents(`Error loading. ${error}`));
      }
    
    /*-----------------------------------------------------------------------------*/
@@ -217,14 +219,6 @@ function generateUpcomingEventsElement(event, teamID) {
 /*  Social media                                                                  */
 
 function generateSocialMedia(t) {
-
-/*
-    $('#js-team-socialmedia').html(
-        `<a href="http://${teamsList[i].strWebsite}" target="_blank"><img src="${teamsList[i].strTeamBadge}" alt="team website" /></a>
-         <a href="http://${teamsList[i].strFacebook}" target="_blank"><img src="images/facebook.png" alt="team facebook" /></a>
-         <a href="http://${teamsList[i].strTwitter}" target="_blank"><img src="images/twitter.png" alt="team twitter" /></a>
-         <a href="http://${teamsList[i].strInstagram}" target="_blank"><img src="images/instagram.png" alt="team instagram" /></a>`);
-*/
 
 /*  See which social media each team is using */
     let socialMedia = [];
@@ -281,7 +275,7 @@ function displayAbout(about) {
     $('#js-about').html(about);
 }
 
-function getTeamDetails(teamID) {
+function getTeamDetails(teamID, teamsList) {
 
 /* used the cached team information */
     for (let i = 0; i < teamsList.length; i++) {
@@ -364,7 +358,7 @@ function selectTeam() {
             clearLastTeam();
 
             /* Fill in the team's data */
-            getTeamDetails(teamID);
+            getTeamDetails(teamID, teamsList);
             getRecentEvents(teamID); 
             getTeamRoster(teamID);
             getUpcomingEvents(teamID);
@@ -375,10 +369,14 @@ function selectTeam() {
 
 
 $(function () {
-        createLeagueTeamList();
+
+        /* import the league's teams list with each team's details one time */
+        createLeagueTeamList(NFL_LEAGUE_ID);
+
         selectTeam();
         manageAbout();
         manageRecent();
         manageRoster();
         manageUpcoming();
+
 });
