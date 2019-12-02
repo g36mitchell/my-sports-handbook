@@ -1,7 +1,7 @@
 "use strict";
 
-/*******************************************************************/
-/***************  Make the dropdown of League Teams  ***************/
+/******************************************************************************/
+/*********************  Make the dropdown of League Teams  ********************/
 function generateTeamListElement(team) {
     return `<option value="${team.idTeam}">${team.strTeam}</option>`;
 }

@@ -155,7 +155,6 @@ header img {
 img {
     height: 300px;
     width: auto;
-    margin: 20px;
     padding: 5px;
  }
 
@@ -231,8 +230,7 @@ table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    padding: 0px 5px 0px 5px;
-  }
+}
   
   td, th {
     border: 1px solid #5D5C61;
@@ -250,6 +248,14 @@ table {
 
   .column-middle {
       text-align: center;
+  }
+
+  div.recent {
+    padding: 0px 5px 0px 5px;
+  }
+  
+  div.upcoming {
+      padding: 0px 5px 0px 5px;
   }
 
 @media screen and (min-width: 750px) {
