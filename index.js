@@ -97,7 +97,7 @@ function getTeamRoster(teamID) {
           var rosterString =  generateRosterString(responseJson["player"]);
           displayRoster(rosterString);
       })
-      .catch(error => displayRoster(`<div class="error">Error loading the roster.  Try again later.</div>`));
+      .catch(error => displayRoster(`<div class="error">This for fee feature is unavailable.</div>`));
   }
 /*----------------------------------------------------------------------------*/
 
