@@ -20,12 +20,13 @@ function createLeagueTeamList(leagueID) {
     fetch(`${LEAGUE_INFO_API}?id=${leagueID}`)
     .then(response => response.json())
     .then(responseJson => {
-        teamsList = responseJson["teams"];  /* cache the league's teams, which is only NFL in the MVP */
+        /* cache the league's teams, which is only NFL in the MVP */
+        teamsList = responseJson["teams"];
         var leagueTeamString =  generateLeagueTeamString(teamsList);
         displayTeams(leagueTeamString);
     })
     /* do a modal when the error is on the team list */
-    .catch(error => alert(`Oops! Something went wrong. Try again later. ${error}`));
+    .catch(error => alert(`Oops! Something went wrong. Try again later.`));
 }
 
 /*---------------------------------------------------------------------------*/
@@ -96,7 +97,7 @@ function getTeamRoster(teamID) {
           var rosterString =  generateRosterString(responseJson["player"]);
           displayRoster(rosterString);
       })
-      .catch(error => displayRoster(`Error loading. ${error}`));
+      .catch(error => displayRoster(`<div class="error">Error loading the roster.  Try again later.</div>`));
   }
 /*----------------------------------------------------------------------------*/
 
@@ -161,7 +162,7 @@ function getRecentEvents(teamID) {
           var recentEventsString =  generateRecentEventsString(responseJson["results"], teamID);
           displayRecentEvents(recentEventsString);
       })
-      .catch(error => displayRecentEvents(`Error loading. ${error}`));
+      .catch(error => displayRecentEvents(`<div class="error">Error loading recent results.  Try again later.</div>`));
   }
 
 /*-----------------------------------------------------------------------------*/
@@ -210,7 +211,7 @@ function generateUpcomingEventsElement(event, teamID) {
              var upcomingEventsString =  generateUpcomingEventsString(responseJson["events"], teamID);
              displayUpcomingEvents(upcomingEventsString);
          })
-         .catch(error => displayUpcomingEvents(`Error loading. ${error}`));
+         .catch(error => displayUpcomingEvents(`<div class="error">Error loading upcoming events.  Try again later.</div>`));
      }
    
    /*-----------------------------------------------------------------------------*/
@@ -368,7 +369,7 @@ function selectTeam() {
 /********************************************************************************/
 
 
-$(function () {
+$(function() {
 
         /* import the league's teams list with each team's details one time */
         createLeagueTeamList(NFL_LEAGUE_ID);
